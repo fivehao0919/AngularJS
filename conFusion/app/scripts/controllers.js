@@ -93,6 +93,13 @@ angular.module('confusionApp')
             }
         }])
 
+        .controller('IndexController', ['$scope', function($scope) {
+            
+        }])
+
+        .controller('AboutController', ['$scope', function($scope) {
+            
+        }])
         // implement the IndexController and About Controller here
 
 
