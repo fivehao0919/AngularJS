@@ -38,11 +38,11 @@
                     <h4><strong>Customer Comments</strong></h4>
                     </div>
                     <div class="col-xs-4" style="top:6px;">
-                    <label for="sort" style="color:gray;">Sort by:</label>
-                    <input type="text" id="sort" name="sort" ng-model="condition" style="color:gray;">
+                    <label for="orderText" style="color:gray;">Sort by:</label>
+                    <input type="text" id="orderText" name="orderText" ng-model="orderText" style="color:gray;">
                     </div>
                 </div>
-                <blockquote ng-repeat="comment in dish.comments |orderBy:condition">
+                <blockquote ng-repeat="comment in dish.comments |orderBy:orderText">
                     <p>{{comment.rating}} Stars</p>
                     <p>{{comment.comment}}</p>
                     <footer>{{comment.author}}, {{comment.date | date: 'MMM. dd,yyyy'}}</footer>

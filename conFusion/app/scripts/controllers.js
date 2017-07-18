@@ -134,21 +134,50 @@ angular.module('confusionApp')
             $scope.promotion = promotion; */
             
             /*$scope.promotion = menuFactory.getPromotion(parseInt(0,10));*/
+            $scope.promotion = {};
+            $scope.showPromotion = false;
+            $scope.message="Loading ...";
+            $scope.promotion = menuFactory.getPromotion().get({id:0})
+            .$promise.then(
+                function(response) {
+                    $scope.promotion = response;
+                    $scope.showPromotion = true;
+                },
+                function(response) {
+                    $scope.message = "Error: " + response.status + " " + response.statusText;
+                }
+            );
             
-            $scope.promotion = menuFactory.getPromotion(parseInt(0,10));
-            
-            
-            
-            var leadership= corporateFactory.getLeader(parseInt(3,10));
-            
-            $scope.leadership = leadership;
+            $scope.leadership = {};
+            $scope.showLeadership = false;
+            $scope.message="Loading ...";
+            $scope.leadership = corporateFactory.getLeaders().get({id:3})
+            .$promise.then(
+                function(response) {
+                    $scope.leadership = response;
+                    $scope.showLeadership = true;
+                },
+                function(response) {
+                    $scope.message = "Error: " + response.status + " " + response.statusText;
+                }
+            )
+            ;
         }])
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
             
-            var leaderships = corporateFactory.getLeaders();
+            $scope.showLeaderships = false;
+            $scope.message = "Loading ...";
+            $scope.leaderships = corporateFactory.getLeaders().query(
+               function(response) {
+                    $scope.leaderships = response;
+                    $scope.showLeaderships = true;
+                },
+                function(response) {
+                    $scope.message = "Error: " + response.status + " " + response.statusText;
+                }
+            ); 
             
-            $scope.leaderships = leaderships;
         }])
         // implement the IndexController and About Controller here
 
