@@ -9,7 +9,7 @@ angular.module('confusionApp')
             };
             
             
-            this.getPromotion = function(){
+            this.getPromotions = function(){
                 return $resource(baseURL+"promotions/:id",null,  {'update':{method:'PUT' }});
             };
                                     
@@ -25,6 +25,13 @@ angular.module('confusionApp')
                 
             return corpfac;
         
+        }])
+
+        .service('feedbackFactory', ['$resource', 'baseURL', function($resource,baseURL) {
+            
+            this.getFeedback = function() {
+                return $resource(baseURL+"feedback/:id",null, {'update':{method:'PUT' }});
+            };
         }])
 
 ;
